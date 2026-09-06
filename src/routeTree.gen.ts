@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GuaranteeRouteImport } from './routes/guarantee'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ProductRouteImport } from './routes/product'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuaranteeRoute = GuaranteeRouteImport.update({
+  id: '/guarantee',
+  path: '/guarantee',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
@@ -31,30 +37,34 @@ const ProductRoute = ProductRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
   '/product': typeof ProductRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
   '/product': typeof ProductRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
   '/product': typeof ProductRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/how-it-works' | '/product'
+  fullPaths: '/' | '/guarantee' | '/how-it-works' | '/product'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/how-it-works' | '/product'
-  id: '__root__' | '/' | '/how-it-works' | '/product'
+  to: '/' | '/guarantee' | '/how-it-works' | '/product'
+  id: '__root__' | '/' | '/guarantee' | '/how-it-works' | '/product'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GuaranteeRoute: typeof GuaranteeRoute
   HowItWorksRoute: typeof HowItWorksRoute
   ProductRoute: typeof ProductRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guarantee': {
+      id: '/guarantee'
+      path: '/guarantee'
+      fullPath: '/guarantee'
+      preLoaderRoute: typeof GuaranteeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-it-works': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GuaranteeRoute: GuaranteeRoute,
   HowItWorksRoute: HowItWorksRoute,
   ProductRoute: ProductRoute,
 }
