@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GuaranteeRouteImport } from './routes/guarantee'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ProductRouteImport } from './routes/product'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuaranteeRoute = GuaranteeRouteImport.update({
@@ -44,6 +50,7 @@ const ProductRoute = ProductRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
   '/product': typeof ProductRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
   '/product': typeof ProductRoute
@@ -59,21 +67,31 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
   '/product': typeof ProductRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/guarantee' | '/how-it-works' | '/product'
+  fullPaths:
+    '/' | '/about' | '/faq' | '/guarantee' | '/how-it-works' | '/product'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/guarantee' | '/how-it-works' | '/product'
-  id: '__root__' | '/' | '/about' | '/guarantee' | '/how-it-works' | '/product'
+  to: '/' | '/about' | '/faq' | '/guarantee' | '/how-it-works' | '/product'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/faq'
+    | '/guarantee'
+    | '/how-it-works'
+    | '/product'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  FaqRoute: typeof FaqRoute
   GuaranteeRoute: typeof GuaranteeRoute
   HowItWorksRoute: typeof HowItWorksRoute
   ProductRoute: typeof ProductRoute
@@ -93,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guarantee': {
@@ -122,6 +147,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  FaqRoute: FaqRoute,
   GuaranteeRoute: GuaranteeRoute,
   HowItWorksRoute: HowItWorksRoute,
   ProductRoute: ProductRoute,
