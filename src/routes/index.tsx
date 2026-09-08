@@ -408,25 +408,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-hairline">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-12 md:flex-row">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
-              <ShieldCheck className="h-4 w-4 text-primary-foreground" />
-            </span>
-            <span className="font-display text-base">
-              TankGuard <span className="text-primary">Pro</span>
-            </span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Premium Internal Tank Protection System · Stop Rust. Stop Leak.
-          </p>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Phone className="h-4 w-4" /> +880 1611-927396
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
+
     </div>
   );
 }

@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GuaranteeRouteImport } from './routes/guarantee'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as OrderRouteImport } from './routes/order'
 import { Route as ProductRouteImport } from './routes/product'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const HowItWorksRoute = HowItWorksRouteImport.update({
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrderRoute = OrderRouteImport.update({
+  id: '/order',
+  path: '/order',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductRoute = ProductRouteImport.update({
   id: '/product',
   path: '/product',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/order': typeof OrderRoute
   '/product': typeof ProductRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/order': typeof OrderRoute
   '/product': typeof ProductRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/guarantee': typeof GuaranteeRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/order': typeof OrderRoute
   '/product': typeof ProductRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/guarantee'
     | '/how-it-works'
+    | '/order'
     | '/product'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/guarantee'
     | '/how-it-works'
+    | '/order'
     | '/product'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/guarantee'
     | '/how-it-works'
+    | '/order'
     | '/product'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GuaranteeRoute: typeof GuaranteeRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  OrderRoute: typeof OrderRoute
   ProductRoute: typeof ProductRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/order': {
+      id: '/order'
+      path: '/order'
+      fullPath: '/order'
+      preLoaderRoute: typeof OrderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/product': {
       id: '/product'
       path: '/product'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GuaranteeRoute: GuaranteeRoute,
   HowItWorksRoute: HowItWorksRoute,
+  OrderRoute: OrderRoute,
   ProductRoute: ProductRoute,
 }
 export const routeTree = rootRouteImport
