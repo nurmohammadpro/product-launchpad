@@ -100,30 +100,8 @@ const steps = [
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Top nav */}
-      <header className="sticky top-0 z-50 border-b border-hairline bg-background/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-          <a href="/" className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-              <ShieldCheck className="h-5 w-5 text-primary-foreground" />
-            </span>
-            <span className="font-display text-lg tracking-tight">
-              TankGuard <span className="text-primary">Pro</span>
-            </span>
-          </a>
-          <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
-            <a href="#features" className="transition-colors hover:text-foreground">Protection</a>
-            <a href="#how" className="transition-colors hover:text-foreground">How to Apply</a>
-            <a href="#guarantee" className="transition-colors hover:text-foreground">Guarantee</a>
-          </nav>
-          <a
-            href="#order"
-            className="inline-flex h-10 items-center rounded-md bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Order Now
-          </a>
-        </div>
-      </header>
+      <SiteHeader />
+
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -408,25 +386,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-hairline">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-12 md:flex-row">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
-              <ShieldCheck className="h-4 w-4 text-primary-foreground" />
-            </span>
-            <span className="font-display text-base">
-              TankGuard <span className="text-primary">Pro</span>
-            </span>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Premium Internal Tank Protection System · Stop Rust. Stop Leak.
-          </p>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Phone className="h-4 w-4" /> +880 1611-927396
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
+
     </div>
   );
 }
